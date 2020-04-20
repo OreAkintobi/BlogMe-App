@@ -18,8 +18,8 @@ const ShowScreen = ({ navigation }) => {
           navigation.navigate("Edit", { id: navigation.getParam("id") })
         }
       />
-      <Text>{blogPost.title}</Text>
-      <Text>{blogPost.content}</Text>
+      <Text style={styles.title}>{blogPost.title}</Text>
+      <Text style={styles.content}>{blogPost.content}</Text>
     </View>
   );
 };
@@ -34,6 +34,20 @@ const ShowScreen = ({ navigation }) => {
 //   };
 // };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  title: {
+    fontSize: 20,
+    marginBottom: 5,
+    marginHorizontal: 10,
+    fontWeight: "bold",
+    textAlign: "center",
+    textDecorationLine: "underline",
+  },
+  content: {
+    fontSize: 20,
+    marginVertical: 10,
+    marginHorizontal: 10,
+  },
+});
 
 export default ShowScreen;
