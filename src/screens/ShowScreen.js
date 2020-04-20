@@ -24,16 +24,6 @@ const ShowScreen = ({ navigation }) => {
   );
 };
 
-// ShowScreen.navigationOptions = ({ navigation }) => {
-//   return {
-//     headerRight: (
-//       <TouchableOpacity onPress={() => navigation.navigate("Edit")}>
-//         <EvilIcons name="pencil" size={35} />
-//       </TouchableOpacity>
-//     ),
-//   };
-// };
-
 const styles = StyleSheet.create({
   title: {
     fontSize: 20,
