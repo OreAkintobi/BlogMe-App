@@ -12,7 +12,12 @@ const ShowScreen = ({ navigation }) => {
 
   return (
     <View>
-      <Button title="Edit Post" onPress={() => navigation.navigate("Edit")} />
+      <Button
+        title="Edit Post"
+        onPress={() =>
+          navigation.navigate("Edit", { id: navigation.getParam("id") })
+        }
+      />
       <Text>{blogPost.title}</Text>
       <Text>{blogPost.content}</Text>
     </View>
