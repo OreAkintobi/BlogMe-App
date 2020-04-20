@@ -15,6 +15,10 @@ const IndexScreen = ({ navigation }) => {
 
   useEffect(() => {
     getBlogPosts();
+
+    navigation.addListener("didFocus", () => {
+      getBlogPosts();
+    });
   }, []);
 
   return (
