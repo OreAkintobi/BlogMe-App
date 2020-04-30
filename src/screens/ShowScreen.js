@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import { View, Text, StyleSheet, Button, ScrollView } from "react-native";
 import { Context } from "../context/BlogContext";
 import { EvilIcons } from "@expo/vector-icons";
 
@@ -12,14 +12,16 @@ const ShowScreen = ({ navigation }) => {
 
   return (
     <View>
-      <Button
-        title="Edit Post"
-        onPress={() =>
-          navigation.navigate("Edit", { id: navigation.getParam("id") })
-        }
-      />
-      <Text style={styles.title}>{blogPost.title}</Text>
-      <Text style={styles.content}>{blogPost.content}</Text>
+      <ScrollView>
+        <Button
+          title="Edit Post"
+          onPress={() =>
+            navigation.navigate("Edit", { id: navigation.getParam("id") })
+          }
+        />
+        <Text style={styles.title}>{blogPost.title}</Text>
+        <Text style={styles.content}>{blogPost.content}</Text>
+      </ScrollView>
     </View>
   );
 };
