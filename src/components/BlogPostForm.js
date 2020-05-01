@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import {
   View,
-  Text,
   StyleSheet,
-  TextInput,
-  Button,
   Keyboard,
   TouchableWithoutFeedback,
 } from "react-native";
+import { Text, TextInput, Button } from "react-native-paper";
+import { AntDesign } from "@expo/vector-icons";
 
 const BlogPostForm = ({ onSubmit, initialValues }) => {
   const [title, setTitle] = useState(initialValues ? initialValues.title : "");
@@ -18,6 +17,14 @@ const BlogPostForm = ({ onSubmit, initialValues }) => {
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={styles.view}>
+        <Button
+          icon={() => <AntDesign name="save" size={15} color="#fff" />}
+          mode="contained"
+          style={styles.button}
+          onPress={() => onSubmit(title, content)}
+        >
+          Save Blog Post
+        </Button>
         <Text style={styles.label}>Enter Title:</Text>
         <TextInput
           style={styles.input}
@@ -26,14 +33,10 @@ const BlogPostForm = ({ onSubmit, initialValues }) => {
         />
         <Text style={styles.label}>Enter Content:</Text>
         <TextInput
-          style={styles.blogBody}
+          style={styles.input}
           multiline={true}
           value={content}
           onChangeText={(text) => setContent(text)}
-        />
-        <Button
-          title="Save Blog Post"
-          onPress={() => onSubmit(title, content)}
         />
       </View>
     </TouchableWithoutFeedback>
@@ -41,29 +44,22 @@ const BlogPostForm = ({ onSubmit, initialValues }) => {
 };
 
 const styles = StyleSheet.create({
-  view: { marginVertical: 10 },
+  button: {
+    height: 50,
+    justifyContent: "center",
+  },
   input: {
     fontSize: 18,
-    borderWidth: 1,
+    borderWidth: 0.5,
     borderColor: "black",
     marginHorizontal: 10,
     margin: 5,
     padding: 5,
     marginBottom: 15,
-  },
-  blogBody: {
-    fontSize: 18,
-    borderWidth: 1,
-    borderColor: "black",
-    marginHorizontal: 10,
-    margin: 5,
-    padding: 5,
-    marginBottom: 15,
-    height: 200,
   },
   label: {
     fontSize: 20,
-    marginBottom: 5,
+    marginVertical: 10,
     marginHorizontal: 10,
   },
 });

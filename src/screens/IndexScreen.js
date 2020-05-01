@@ -1,14 +1,8 @@
 import React, { useContext, useEffect } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  FlatList,
-  Button,
-  TouchableOpacity,
-} from "react-native";
+import { View, StyleSheet, FlatList, TouchableOpacity } from "react-native";
+import { Surface, Button, Text } from "react-native-paper";
 import { Context } from "../context/BlogContext";
-import { Feather } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 
 const IndexScreen = ({ navigation }) => {
   const { state, deleteBlogPost, getBlogPosts } = useContext(Context);
@@ -26,27 +20,31 @@ const IndexScreen = ({ navigation }) => {
   }, []);
 
   return (
-    <View>
-      <Button title="Add Post" onPress={() => navigation.navigate("Create")} />
+    <View style={{ flex: 1 }}>
+      <Button
+        icon="plus"
+        mode="contained"
+        style={styles.button}
+        onPress={() => navigation.navigate("Create")}
+      >
+        Add a Post
+      </Button>
       <FlatList
+        scrollEnabled
         data={state}
         keyExtractor={(blogPost) => blogPost.title}
-        renderItem={({ item }) => {
-          return (
-            <TouchableOpacity
-              onPress={() => navigation.navigate("Show", { id: item.id })}
-            >
-              <View style={styles.row}>
-                <Text style={styles.title}>
-                  {item.title} - {item.id}
-                </Text>
-                <TouchableOpacity onPress={() => deleteBlogPost(item.id)}>
-                  <Feather name="trash" style={styles.icon} />
-                </TouchableOpacity>
-              </View>
-            </TouchableOpacity>
-          );
-        }}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            onPress={() => navigation.navigate("Show", { id: item.id })}
+          >
+            <Surface style={styles.row}>
+              <Text style={styles.title}>{item.title}</Text>
+              <TouchableOpacity onPress={() => deleteBlogPost(item.id)}>
+                <AntDesign name="delete" size={20} color="#6200ee" />
+              </TouchableOpacity>
+            </Surface>
+          </TouchableOpacity>
+        )}
       />
     </View>
   );
@@ -63,19 +61,22 @@ const IndexScreen = ({ navigation }) => {
 // };
 
 const styles = StyleSheet.create({
+  button: {
+    height: 50,
+    justifyContent: "center",
+  },
   row: {
     flexDirection: "row",
     justifyContent: "space-between",
     paddingVertical: 20,
     paddingHorizontal: 10,
-    borderTopWidth: 1,
+    borderTopWidth: 0.5,
+    borderBottomWidth: 0.3,
     borderColor: "gray",
+    elevation: 8,
   },
   title: {
     fontSize: 18,
-  },
-  icon: {
-    fontSize: 24,
   },
 });
 
